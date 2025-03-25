@@ -16,16 +16,9 @@ export default function Navbar() {
   return (
     <nav
       className={`${
-        !session?.user && pathname !== "/privacy-policy" && "hidden"
-      } bg-[#FCFCFC] w-full h-10 py-8 flex items-center ${
-        pathname === "/privacy-policy" ? "justify-between" : "justify-end"
-      } md:px-20 px-5`}
+        !session?.user
+      } bg-[#FCFCFC] w-full h-10 py-8 flex items-center justify-end md:px-20 px-5`}
     >
-      {pathname === "/privacy-policy" && (
-        <button onClick={() => router.back()} className="group">
-          <IoMdArrowBack className="w-6 h-6 group-hover:-translate-x-2 transform transition duration-300" />
-        </button>
-      )}
       {session?.user && (
         <button
           onClick={handleSignOut}
@@ -38,3 +31,4 @@ export default function Navbar() {
     </nav>
   );
 }
+

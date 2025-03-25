@@ -2,24 +2,12 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { fetchGitHubContributions } from "@/lib/utils";
-
-interface Props {
-  username: string;
-}
-
-interface ContributionDay {
-  date: string;
-  contributionCount: number;
-}
-
-interface ContributionWeek {
-  contributionDays: ContributionDay[];
-}
-
-interface ContributionCalendar {
-  totalContributions: number;
-  weeks: ContributionWeek[];
-}
+import {
+  Props,
+  ContributionCalendar,
+  ContributionDay,
+  ContributionWeek,
+} from "@/types/types";
 
 export default function ContributionGraph({ username }: Props) {
   const { data: session } = useSession();
@@ -83,31 +71,40 @@ export default function ContributionGraph({ username }: Props) {
   return (
     <div className="w-full flex flex-col items-start">
       <div className="flex w-full justify-between flex-nowrap">
-        {contributions.weeks.map((week: ContributionWeek, weekIndex: number) => (
-          <div key={weekIndex} className="week flex">
-            {shouldShowMonthLabel(week, contributions.weeks[weekIndex - 1]) && (
-              <p className="text-center text-[10px] font-medium mb-1">
-                {getWeekStartMonth(week)}
-              </p>
-            )}
-          </div>
-        ))}
+        {contributions.weeks.map(
+          (week: ContributionWeek, weekIndex: number) => (
+            <div key={weekIndex} className="week flex">
+              {shouldShowMonthLabel(
+                week,
+                contributions.weeks[weekIndex - 1]
+              ) && (
+                <p className="text-center text-[10px] font-medium mb-1">
+                  {getWeekStartMonth(week)}
+                </p>
+              )}
+            </div>
+          )
+        )}
       </div>
 
       <div className="contribution-graph flex w-full justify-start flex-nowrap">
-        {contributions.weeks.map((week: ContributionWeek, weekIndex: number) => (
-          <div key={weekIndex} className="week flex flex-col">
-            {week.contributionDays.map((day: ContributionDay, dayIndex: number) => (
-              <div
-                key={dayIndex}
-                title={`${day.date}: ${day.contributionCount} contributions`}
-                className={`${getColorForContribution(
-                  day.contributionCount
-                )} inline-block rounded-sm m-[1px] md:w-3 md:h-3 w-[4px] h-[4px]`}
-              />
-            ))}
-          </div>
-        ))}
+        {contributions.weeks.map(
+          (week: ContributionWeek, weekIndex: number) => (
+            <div key={weekIndex} className="week flex flex-col">
+              {week.contributionDays.map(
+                (day: ContributionDay, dayIndex: number) => (
+                  <div
+                    key={dayIndex}
+                    title={`${day.date}: ${day.contributionCount} contributions`}
+                    className={`${getColorForContribution(
+                      day.contributionCount
+                    )} inline-block rounded-sm m-[1px] md:w-3 md:h-3 w-[4px] h-[4px]`}
+                  />
+                )
+              )}
+            </div>
+          )
+        )}
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ import { container, item, xContent } from "@/lib/contants";
 import { FaXTwitter } from "react-icons/fa6";
 import { toast } from "sonner";
 import { GitHubUser } from "@/interface/github-user";
-
+import { DEFAULT_DELAY } from "@/constants/constants";
 export default function Home() {
   const { data: session } = useSession();
   const [userDetails, setUserDetails] = useState<GitHubUser | null>(null);
@@ -43,11 +43,6 @@ export default function Home() {
     }
   };
 
-  const handleShare = () => {
-    const xURL = `https://x.com/intent/tweet?text=${xContent}`;
-    window.open(xURL, "_blank");
-  };
-
   const fetchGitHubUserDetails = async (accessToken: string) => {
     setLoading(true);
     setTimeout(async () => {
@@ -64,7 +59,7 @@ export default function Home() {
       );
       setMergedPrCount(mergedPRs);
       setLoading(false);
-    }, 1500);
+    }, DEFAULT_DELAY);
   };
 
   return (
@@ -107,7 +102,7 @@ export default function Home() {
           onClick={() =>
             fetchGitHubUserDetails(session?.user.accessToken as string)
           }
-          className={`${karla.className} bg-black rounded-lg hover:shadow-2xl w-fit text-white px-4 py-2 flex items-center mt-6`}
+          className={`${karla.className} bg-blue-600 rounded-lg hover:shadow-2xl w-fit text-white px-4 py-2 flex items-center mt-6`}
         >
           {loading ? "Summoning profile..." : "Generate my awesomeness"}
 
@@ -124,7 +119,7 @@ export default function Home() {
           <motion.button
             variants={item}
             onClick={() => signIn("github")}
-            className={`${karla.className} bg-white border rounded-lg w-fit hover:bg-gray-50 text-neutral-800 px-4 py-2 flex items-center mt-6 shadow-2xl`}
+            className={`${karla.className} bg-blue-600 border rounded-lg w-fit hover:bg-blue-700 text-neutral-800 px-4 py-2 flex items-center mt-6 shadow-2xl`}
           >
             Log in with GitHub
             <Image className="w-4 h-4 ml-2" src={github} alt="github-icon" />
@@ -156,12 +151,6 @@ export default function Home() {
             className="px-4 py-2 mx-3 md:hidden block rounded-md border border-black bg-white text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"
           >
             Download (Nope.)
-          </button>
-          <button
-            onClick={handleShare}
-            className="px-4 py-2 rounded-md border border-black bg-white text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200 flex items-center"
-          >
-            <FaXTwitter className="w-4 h-4 mx-1" /> Brag about it
           </button>
         </div>
       )}

@@ -25,10 +25,6 @@ export default function Footer() {
       </motion.p>
       <motion.p variants={item} className="text-xs flex items-center py-2">
         <span>All rights reserved, but you can borrow them &copy; 2025</span>{" "}
-        <GoDotFill className="w-2 h-2 mx-2" />
-        <Link className="hover:underline" href={"/privacy-policy"}>
-          No Snooping Allowed (Privacy Policy)
-        </Link>
       </motion.p>
     </motion.footer>
   );
