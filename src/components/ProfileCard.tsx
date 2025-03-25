@@ -14,7 +14,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { GoDotFill } from "react-icons/go";
 import { ProfileCardProps } from "@/types/types";
 import ContributionGraph from "./ContributionGraph";
-import { fetchMostUsedLanguages, getGitAge, getGitStreak } from "@/lib/utils";
+import { fetchMostUsedLanguages, getGitAge, getGitStreak } from "@/lib/utils/utils";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useCallback } from "react";

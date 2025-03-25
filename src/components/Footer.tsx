@@ -4,7 +4,7 @@ import { karla } from "@/app/fonts/font";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { GoDotFill } from "react-icons/go";
-import { container, item } from "@/lib/contants";
+import { container, item } from "@/lib/utils/contants";
 
 export default function Footer() {
   return (

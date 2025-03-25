@@ -7,21 +7,23 @@ import { signIn, useSession } from "next-auth/react";
 import axios from "axios";
 import Image from "next/image";
 import github from "../public/github.svg";
-import { fetchMergedPrCount } from "@/lib/utils";
+import { fetchMergedPrCount } from "@/lib/utils/utils";
 import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { Cover } from "@/components/ui/cover";
 import { motion } from "framer-motion";
-import { container, item, xContent } from "@/lib/contants";
-import { FaXTwitter } from "react-icons/fa6";
+import { container, item, xContent } from "@/lib/utils/contants";
+
 import { toast } from "sonner";
 import { GitHubUser } from "@/interface/github-user";
-import { DEFAULT_DELAY } from "@/constants/constants";
+import { DEFAULT_DELAY } from "@/lib/constants";
+
 export default function Home() {
   const { data: session } = useSession();
   const [userDetails, setUserDetails] = useState<GitHubUser | null>(null);
   const [mergedPrCount, setMergedPrCount] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [loadingLogin, setLoadingLogin] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   const downloadImage = async () => {
@@ -60,6 +62,17 @@ export default function Home() {
       setMergedPrCount(mergedPRs);
       setLoading(false);
     }, DEFAULT_DELAY);
+  };
+
+  const handleLoginClick = async () => {
+    setLoadingLogin(true); 
+    try {
+      await signIn("github");
+    } catch (error) {
+      console.error("Error during GitHub login:", error);
+    } finally {
+      setLoadingLogin(false); 
+    }
   };
 
   return (
@@ -118,11 +131,33 @@ export default function Home() {
         userDetails === null && (
           <motion.button
             variants={item}
-            onClick={() => signIn("github")}
+            onClick={handleLoginClick} 
             className={`${karla.className} bg-blue-600 border rounded-lg w-fit hover:bg-blue-700 text-neutral-800 px-4 py-2 flex items-center mt-6 shadow-2xl`}
           >
-            Log in with GitHub
-            <Image className="w-4 h-4 ml-2" src={github} alt="github-icon" />
+            {loadingLogin ? (
+              <>
+                Logging in...
+                <motion.div
+                  className="w-4 h-4 ml-2 flex items-center justify-center"
+                  animate={{
+                    rotate: [0, 30, -30, 0],
+                    y: [0, -5, 0],
+                  }}
+                  transition={{ repeat: Infinity, duration: 1 }}
+                >
+                  <Pickaxe />
+                </motion.div>
+              </>
+            ) : (
+              <>
+                Log in with GitHub
+                <Image
+                  className="w-4 h-4 ml-2"
+                  src={github}
+                  alt="github-icon"
+                />
+              </>
+            )}
           </motion.button>
         )
       )}

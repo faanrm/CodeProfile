@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
-import { fetchGitHubContributions } from "@/lib/utils";
+import { fetchGitHubContributions } from "@/lib/utils/utils";
 import {
   Props,
   ContributionCalendar,
