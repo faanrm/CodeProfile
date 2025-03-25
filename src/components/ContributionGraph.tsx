@@ -59,7 +59,7 @@ export default function ContributionGraph({ username }: Props) {
 
   if (!contributions || loading) {
     return (
-      <div className="animate-pulse flex space-x-4">
+      <div className="animate-lse flex space-x-4">
         <div className="space-y-2 flex justify-between w-full">
           <div className="w-full mt-8 flex flex-col items-start">
             <div className="h-28 bg-gray-300 rounded w-full my-2"></div>
