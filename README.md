@@ -1,6 +1,6 @@
 # CodeProfile
 
-![CodeProfile](https://github.com/faanrm/CodeProfile/blob/main/code-profile.jpg)
+<img src="https://github.com/faanrm/CodeProfile/blob/main/code-profile.jpg" alt="CodeProfile" width="800" />
 
 ## Overview
 
