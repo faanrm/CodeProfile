@@ -1,5 +1,6 @@
-import { GitHubUser } from "@/interface/github-user";
+import { GitHubUser } from "@/types/github-user";
 import { RefObject } from "react";
+
 export type UserDetails = {
   avatar_url: string;
   name: string;

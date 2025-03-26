@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 import { container, item, xContent } from "@/lib/utils/contants";
 
 import { toast } from "sonner";
-import { GitHubUser } from "@/interface/github-user";
+import { GitHubUser } from "@/types/github-user";
 import { DEFAULT_DELAY } from "@/lib/constants";
 
 export default function Home() {
@@ -65,13 +65,13 @@ export default function Home() {
   };
 
   const handleLoginClick = async () => {
-    setLoadingLogin(true); 
+    setLoadingLogin(true);
     try {
       await signIn("github");
     } catch (error) {
       console.error("Error during GitHub login:", error);
     } finally {
-      setLoadingLogin(false); 
+      setLoadingLogin(false);
     }
   };
 
@@ -131,7 +131,7 @@ export default function Home() {
         userDetails === null && (
           <motion.button
             variants={item}
-            onClick={handleLoginClick} 
+            onClick={handleLoginClick}
             className={`${karla.className} bg-blue-600 border rounded-lg w-fit hover:bg-blue-700 text-neutral-800 px-4 py-2 flex items-center mt-6 shadow-2xl`}
           >
             {loadingLogin ? (
@@ -164,7 +164,17 @@ export default function Home() {
 
       {userDetails !== null && (
         <ProfileCard
-          userData={userDetails}
+          userData={{
+            login: userDetails.login,
+            name: userDetails.name ?? undefined, 
+            avatar_url: userDetails.avatar_url,
+            public_repos: userDetails.public_repos,
+            followers: userDetails.followers,
+            following: userDetails.following,
+            created_at: userDetails.created_at,
+            location: userDetails.location,
+            twitter_username: userDetails.twitter_username,
+          }}
           mergedPrCount={mergedPrCount}
           cardRef={cardRef}
         />
