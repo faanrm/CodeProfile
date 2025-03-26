@@ -1,10 +1,10 @@
 # CodeProfile
 
-<img src="https://github.com/faanrm/CodeProfile/blob/main/code-profile.jpg" alt="CodeProfile" width="800" height="533"  />
+<img src="https://github.com/faanrm/CodeProfile/blob/main/code-profile.jpg" alt="CodeProfile" width="800" height="250"  />
 
 ## Overview
 
-CodeProfile is an innovative web tool designed to create stylish and personalized profile cards using GitHub user information. Built with Next.js, this tool allows users to showcase their GitHub profiles in a visually appealing and customizable manner.
+CodeProfile is an innovative web tool designed to create stylish and personalized profile cards using GitHub user information. Built with Next.js, this tool allows users to showcase their GitHub profiles in a visually appealing and customizable banner.
 
 ## Features
 
