@@ -2,7 +2,7 @@ import React from "react";
 import { ProfileCardComponentProps } from "@/types/profile-card";
 import { karla } from "@/app/fonts/font";
 import { languageLogos } from "@/lib/constants";
-
+import { FunnySignature } from "../signature";
 const linkedinProfile: React.FC<ProfileCardComponentProps> = ({
   completeUserData,
   mergedPrCount,
@@ -82,7 +82,6 @@ const linkedinProfile: React.FC<ProfileCardComponentProps> = ({
           </div>
         </div>
       </div>
-
       <div className="absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-r from-blue-400 to-blue-600"></div>
     </div>
   );
