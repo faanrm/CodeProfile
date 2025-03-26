@@ -1,6 +1,6 @@
 # CodeProfile
 
-<img src="https://github.com/faanrm/CodeProfile/blob/main/code-profile.jpg" alt="CodeProfile" width="800" />
+<img src="https://github.com/faanrm/CodeProfile/blob/main/code-profile.jpg" alt="CodeProfile" width="800" height="533"  />
 
 ## Overview
 
